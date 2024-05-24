@@ -3,13 +3,13 @@
 1.  x2 - 6x + 9 = 0. - один корень
 2.  x2 - 4x - 5 = 0. - два корня
 */
-let firstDiscriminant = (-6) ** 2 - 4 * 9;
-let firstRoot = (-6 + Math.sqrt(firstDiscriminant)) / 2;
+const firstDiscriminant = (-6) ** 2 - 4 * 9;
+const firstRoot = (-6 + Math.sqrt(firstDiscriminant)) / 2;
 
 
-let secondDiscriminant = (-4) ** 2 - 4 * (-5);
-let secondRoot1 = (-4 + Math.sqrt(secondDiscriminant)) / 2;
-let secondRoot2 = (-4 - Math.sqrt(secondDiscriminant)) / 2;
+const secondDiscriminant = (-4) ** 2 - 4 * (-5);
+const secondRoot1 = (-4 + Math.sqrt(secondDiscriminant)) / 2;
+const secondRoot2 = (-4 - Math.sqrt(secondDiscriminant)) / 2;
 
 console.log("Ответ к уравнению 1: " + firstRoot);
 console.log("Ответ к уравнению 2: " + secondRoot1 + " и " + secondRoot2);
