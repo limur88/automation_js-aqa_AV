@@ -8,7 +8,7 @@
 //   - Иначе выводите "Technical work".
 // 5. Проверить задание со следующими значениями в переменной age: 10, 17, 18, 19, 59, 60, 61
 
-let age = prompt("What is your age?");
+const age = prompt("What is your age?");
 const minAge = 18;
 const maxAge = 60;
 
@@ -30,10 +30,10 @@ if (age < minAge) {
 }
 
 //1.Реализовать Task 1 через switch
-let tooSmall = age < minAge;
-let good = age >= minAge && age < maxAge;
-let tooBig = age > maxAge;
-let outOfRange = 60;
+const tooSmall = age < minAge;
+const good = age >= minAge && age < maxAge;
+const tooBig = age > maxAge;
+const outOfRange = 60;
 
 switch (tooSmall || good || tooBig || outOfRange) {
     case tooSmall: {
@@ -91,15 +91,15 @@ if (typeof age != "number") {
 // 3.Преобразовать Task 2 - 1 таким образом, чтобы значение НАПРИМЕР '2' (т.е. ЛЮБАЯ строка в которой лежат ТОЛЬКО ЦИФРЫ) пропускалось,
 // преобразовываясь в number
 
-let checkNumIsString = 0 + (+ age);
+const checkNumIsString = 0 + (+ age);
 
 if (typeof checkNumIsString != "number") {
     alert("Wrong type of data")
 } else {
-    let tooSmall = age < minAge;
-    let good = age >= minAge && age < maxAge;
-    let tooBig = age > maxAge;
-    let outOfRange = 60;
+    const tooSmall = age < minAge;
+    const good = age >= minAge && age < maxAge;
+    const tooBig = age > maxAge;
+    const outOfRange = 60;
 
     switch (tooSmall || good || tooBig || outOfRange) {
         case tooSmall: {
