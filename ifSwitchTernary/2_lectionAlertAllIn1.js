@@ -59,7 +59,9 @@ switch (tooSmall || good || tooBig || outOfRange) {
 // И если он не number - кидалась ошибка в консоль.
 // Проверить работу кода на следующих данных 17, 18, 61, "2", "aaa"
 
-if (typeof age != "number") {
+const checkNumIsString = + age;
+
+if (!checkNumIsString) {
     alert("Wrong type of data")
 } else {
     const tooSmall = age < minAge;
@@ -91,9 +93,7 @@ if (typeof age != "number") {
 // 3.Преобразовать Task 2 - 1 таким образом, чтобы значение НАПРИМЕР '2' (т.е. ЛЮБАЯ строка в которой лежат ТОЛЬКО ЦИФРЫ) пропускалось,
 // преобразовываясь в number
 
-const checkNumIsString = 0 + (+ age);
-
-if (typeof checkNumIsString != "number") {
+if (!checkNumIsString) {
     alert("Wrong type of data")
 } else {
     const tooSmall = age < minAge;

@@ -4,9 +4,9 @@ const age = prompt("What is your age?");
 const minAge = 18;
 const maxAge = 60;
 
-const checkNumIsString = 0 + (+ age);
+const checkNumIsString = + age;
 
-if (typeof checkNumIsString != "number") {
+if (!checkNumIsString) {
     console.log("Wrong type of data")
 } else {
     const tooSmall = age < minAge;
