@@ -92,7 +92,7 @@ if (typeof age !== 'number') {
 // 3.Преобразовать Task 2 - 1 таким образом, чтобы значение НАПРИМЕР '2' (т.е. ЛЮБАЯ строка в которой лежат ТОЛЬКО ЦИФРЫ) пропускалось,
 // преобразовываясь в number
 
-if (!checkNumIsString) {
+if (isNaN(age)) {
     alert("Wrong type of data")
 } else {
     const tooSmall = age < minAge;
