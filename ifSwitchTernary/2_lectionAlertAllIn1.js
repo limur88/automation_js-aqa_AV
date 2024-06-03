@@ -59,9 +59,8 @@ switch (tooSmall || good || tooBig || outOfRange) {
 // И если он не number - кидалась ошибка в консоль.
 // Проверить работу кода на следующих данных 17, 18, 61, "2", "aaa"
 
-const checkNumIsString = + age;
 
-if (!checkNumIsString) {
+if (typeof age !== 'number') {
     alert("Wrong type of data")
 } else {
     const tooSmall = age < minAge;
