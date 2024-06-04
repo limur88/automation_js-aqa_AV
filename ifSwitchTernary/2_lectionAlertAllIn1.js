@@ -95,9 +95,10 @@ if (typeof age !== 'number') {
 if (isNaN(age)) {
     alert("Wrong type of data")
 } else {
-    const tooSmall = age < minAge;
-    const good = age >= minAge && age < maxAge;
-    const tooBig = age > maxAge;
+    const ageN = +age;
+    const tooSmall = ageN < minAge;
+    const good = ageN >= minAge && ageN < maxAge;
+    const tooBig = ageN > maxAge;
     const outOfRange = 60;
 
     switch (tooSmall || good || tooBig || outOfRange) {
