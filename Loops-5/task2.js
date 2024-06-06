@@ -41,7 +41,6 @@ while (i<=4 && size> 1024){
 // 2. Сделать из "*" в консоли равнобедренный треугольник и ромб
 
 let base = Math.floor(Math.random() * (20 - 3) + 3);//generate number from 3 to 20
-
 const empty = " ";
 const star = "*";
 for (let i = (base/2); i>=1 ; i-- ){
