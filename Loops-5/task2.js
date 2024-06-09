@@ -13,8 +13,7 @@
 //   1 454 548 = 1,5 Mb
 //   Результат должен быть округлен до 1 знака после запятой методом .toFixed(), про который надо почитать самим ;)
 
-let size = Math.round(Math.random() * (1024**4 - 1024 + 1) + 1024).toFixed(2); 
-
+let size = Math.round(Math.random() * (1024**4 - 1024 + 1) + 1024).toFixed(2);
 let i = 1;
 while (i<=4 && size> 1024){
     size = size / 1024;
@@ -41,6 +40,7 @@ while (i<=4 && size> 1024){
 // 2. Сделать из "*" в консоли равнобедренный треугольник и ромб
 
 let base = Math.floor(Math.random() * (20 - 3) + 3);//generate number from 3 to 20
+console.log(base);
 const empty = " ";
 const star = "*";
 for (let i = (base/2); i>=1 ; i-- ){
@@ -48,7 +48,11 @@ for (let i = (base/2); i>=1 ; i-- ){
        let triangle = empty.repeat(i) + star.repeat(starss) + empty.repeat(i);
       console.log(triangle);  
     }
-
+// for diamond shape i need only even numbers
+if (base%2){
+    base +=1;
+}
+console.log(base);
 for (let i = (base/2); i>= (-base/2) ; i-- ){
     if (i >= 0){
         let starss = 1  + (base - 2 * i);
@@ -85,8 +89,8 @@ for (i = 1; i<= 15; i ++){
 // 4. Написать скрипт, который преобразует любое предложение в camelCase. Первое слово должно начинаться с буквы в нижнем регистре, 
 //   у остальных -  верхнем. Пример: I am super engineer => iAmSuperEngineer
 
-const sentence = "I am super engineer";
-const words = sentence.split(" ");
+const sentence = "I am SUPER engineer";
+const words = sentence.toLowerCase().split(" ");
 for (let i =1; i< words.length ; i++){
    words[i] = words[i][0].toUpperCase() + words[i].slice(1, words[i].length).toLowerCase();
 }

@@ -7,7 +7,7 @@
 //выводится 1
 
 function sumOfDigits(num){
-    let digits = num.toString().split("");
+    const digits = num.toString().split("");
     let sum = 0;
     for(i = 0; i< digits.length; i ++){
         sum+= +digits[i];

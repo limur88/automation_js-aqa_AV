@@ -4,17 +4,18 @@
 //   const competitorPizzas = ['Peperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawai'] 
 const competitorPizzas = ['Peperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawai'];
 // const myPizzas = ['Peperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawai'];
-const myPizzas = ['Peperoni','4 meat', 'Belladonna', 'Caprichosa', 'Diablo', '4 cheeses'];
+const myPizzas = ['Peperoni','4 meat', 'Hawai', 'Belladonna', 'Caprichosa', 'Diablo', '4 cheeses'];
 
 function comparePizzas (my, other){
-    let unique = [...my];
-    for(let i = 0; i< other.length; i++){
-           if (my.indexOf(other[i]) != -1) {
-            unique.splice(unique.indexOf(other[i]), 1);
+    const myLowerCase = my.map(word => word.toLowerCase());
+    const otherLowerCase = other.map(word => word.toLowerCase());
+    let unique = [];
+    for(let i = 0; i< myLowerCase.length; i++){
+           if (otherLowerCase.indexOf(myLowerCase[i]) == -1) {
+            unique.push(my[i]);
         }
-    } if (unique.length == 0){
-        return "Null";
-    }return unique
+    } 
+    return unique.length ? unique : null;
 }
 console.log(comparePizzas (myPizzas, competitorPizzas))
 
@@ -25,14 +26,14 @@ const sentence = "I love to read book"
   function returnLongestWord(sentence){
     let words = sentence.split(" ");
     let wordLength = [];
-    for (let word of words){
+    for (const word of words){
         wordLength.push(word.length);
     }
     
     let greatest = Math.max(...wordLength);
     let answer = []
-    for (let word of words){
-        if (word.length == 4){
+    for (const word of words){
+        if (word.length == greatest){
         answer.push(word);
     }
 }
@@ -64,12 +65,6 @@ function checkIfPolyndrom (phrase){
     count ++;
     i++;
 }
-if (count == word.length){
-    let answer = "Palyndrom";
-    return answer
-}else{
-    let answer = "NOT palyndrom";
-    return answer
+return count == word.length;
 }
-}
-console.log(checkIfPolyndrom ('Anna'))
+console.log(`Word is palindrom: ${checkIfPolyndrom ('Anvfna')}`)

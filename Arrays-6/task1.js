@@ -6,17 +6,15 @@
 // 6. Для поиска ответа функции нужно найти индекс сотрудника в массиве имен. Зарплату взять с ТЕМ ЖЕ индексом что и имя
 // 7. Для возврата из функции создайте массив, методом .push поместите в него имя и зарплату, и через return верните созданный массив
 // 8. Если такое имя сотрудника в массиве не найдется - вернуть null
-
+const employees = ["Jason", "Hanna", "Bill", "Allice", "Kate"];
+const wages = [100, 125, 95, 70, 88];
 function getEmployeeinfo(name){
-    const employees = ["Jason", "Hanna", "Bill", "Allice", "Kate"];
-    const wages = [100, 125, 95, 70, 88];
-    let answer = [name];
-    if (employees.indexOf(name) == -1){
+   const index = employees.indexOf(name);
+    if (index == -1){
         return "null"
     } else{
-    let index = employees.indexOf(name);
-    //let answer = [name, wages[index]];
-    answer.push(wages[index]);
-}return answer;
+    const answer = [name,  wages[index]];
+    return answer;
+}
 }
 console.log(getEmployeeinfo("Kate"));
