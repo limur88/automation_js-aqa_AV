@@ -43,12 +43,15 @@ const sentence = "I love to read book"
 
 // 3. Напишите функцию, которая принимает на вход массив чисел, убирает из него дубликаты и возвращает массив с только уникальными значениями.
 
-let numbers = [1, 1, 1, 1, 5, 5, 10, 3, 8, 10, 1, 1, 1, 5, 5, 6, 9];
+let numbersArray = [1, 1, 1, 1, 5, 5, 10, 3, 8, 10, 1, 1, 1, 5, 5, 6, 9];
+function cutSameNumbers(numbers){
 const result = []
 for(const num of numbers){
-if(! result.includes(num)) result.push(num)
+if(!result.includes(num)) {
+    result.push(num)}
+}return result
 }
-console.log(numbers);
+console.log( cutSameNumbers(numbersArray));
 
 
 // 4. Написать функцию, которая принимает на вход слово и проверяет, является ли это слово палиндромом
