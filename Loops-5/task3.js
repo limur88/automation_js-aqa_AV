@@ -2,19 +2,18 @@
 //   и выводить в консоль количество гласных и согласных букв в этом слове. 
 //   Ответ должен выводиться шаблонным литералом вида word contains x vowels and y consonants
 
-const word = "anna voroooooonova";
-const vowelsLetters = 'aoeiu';// it is not clear if "y" is vowel or consonant, so i treat it as consonant
+const word = "anna voro--oonova";
+const vowelsLetters = 'aoeiu';
+const consonantLetters = 'qwrtypsdfghjklzxcvbnm'// it is not clear if "y" is vowel or consonant, so i treat it as consonant
 let consonants =0;
 let vowels =0;
-
 for (let i =0; i < word.length; i++){
     let wordLowerCase = word.toLowerCase();
     if (vowelsLetters.includes(wordLowerCase[i])){
-        vowels ++
-    } else {
-        consonants = word.length;
-    }
-    consonants = word.length - vowels;    
+        vowels ++;
+    } else if (consonantLetters.includes(wordLowerCase[i])){
+            consonants ++;
+    }   
 }
 console.log(`${word} contains ${vowels} vowels and ${consonants} consonants`)
 
