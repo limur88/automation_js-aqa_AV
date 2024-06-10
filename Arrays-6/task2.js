@@ -44,13 +44,9 @@ const sentence = "I love to read book"
 // 3. Напишите функцию, которая принимает на вход массив чисел, убирает из него дубликаты и возвращает массив с только уникальными значениями.
 
 let numbers = [1, 1, 1, 1, 5, 5, 10, 3, 8, 10, 1, 1, 1, 5, 5, 6, 9];
-for(let i = 0; i < numbers.length -1; i++){
-    for (let j = i + 1; j < numbers.length; j++){
-        if(numbers[i] === numbers[j]){
-            numbers.splice(j, 1);
-            j--;
-        }
-    }
+const result = []
+for(const num of numbers){
+if(! result.includes(num)) result.push(num)
 }
 console.log(numbers);
 
