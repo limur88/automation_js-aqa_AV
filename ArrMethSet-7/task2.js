@@ -5,16 +5,16 @@
 const sentence = 'I am the best AQA ever!';
 const countedLetters = [sentence.toLowerCase()].map(countLetters).flat();
 
-function countLetters( phrase){
-    let counted = [];
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    for(let i = 0; i < phrase.length; i++){
-        if (alphabet.indexOf(phrase[i]) >= 0){
-        counted.push(phrase.split(phrase[i]).length -1);
-    }else{
-         counted.push(phrase[i]);
-        }
-    }return counted;
+function countLetters(phrase) {
+  const counted = [];
+  for (let i = 0; i < phrase.length; i++) {
+    if (phrase[i].match(/[a-z]/g)) {
+      counted.push(phrase.split(phrase[i]).length - 1);
+    } else {
+      counted.push(phrase[i]);
+    }
+  }
+  return counted;
 }
 
 console.log(countedLetters);
