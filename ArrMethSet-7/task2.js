@@ -3,7 +3,7 @@
 // предложении. Пробелы и знаки препинания оставляем без изменения. Регистр не должен играть роли.
 
 const sentence = 'I am the best AQA ever!';
-const countedLetters = [sentence.toLowerCase()].map(countLetters).flat();
+const countedLetters = [sentence.toLowerCase()].map(countLetters).flat(Infinity).join('');
 
 function countLetters(phrase) {
   const counted = [];
