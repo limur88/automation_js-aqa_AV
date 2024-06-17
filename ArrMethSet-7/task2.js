@@ -59,15 +59,24 @@ function compareVowelCount(a, b) {
 //   Пример:
 
 const arr = [[['(']], ')', ')', '(', ')', ')', ['(', ['('], [')']]];
-const simplified = arr.flat(Infinity);
 // solution 1
-simplified.sort();
+function closedBrackets(array){
+const simplified = array.flat(Infinity).sort();
 if (simplified.length % 2 || simplified[simplified.length /2] != simplified[simplified.length /2 +1]){
     console.log("Not all have pairs")
+    return false;
 } else{
     console.log("All have pairs")
+    return true;
 }
+}
+console.log(closedBrackets(arr));
+
 //solution 2
+function closedBrackets2(array){
+const simplified = array.flat(Infinity);
 const opened = simplified.filter(item => item == "(");
 const closed = simplified.filter(item => item == ")");
-console.log(opened.length == closed.length)
+return (opened.length == closed.length)
+}
+console.log(closedBrackets2(arr));
