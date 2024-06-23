@@ -155,7 +155,7 @@ function editDepartment(deptId, deptNewName){
 
 // 7. Написать функцию для удаления предприятия. В качестве аргумента принимает id предприятия.
 function deleteEnterprise(entrepriceId){
-  let indexOfCompany = enterprises.find(company => company.id === entrepriceId);
+  let indexOfCompany = enterprises.findIndex(company => company.id === entrepriceId);
   enterprises.splice(indexOfCompany, 1);
   return enterprises;
 }
