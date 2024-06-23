@@ -60,118 +60,108 @@ const enterprises = [
 // Задания:
 // 1. Вывести все предприятия и их отделы. Рядом указать количество сотрудников. 
 //Для предприятия посчитать сумму всех сотрудников во всех отделах.
-// function countEmployees(array){
-//     let entreprise = [];
-//     for (let company of array){
-//         let count = 0;
-//         let shortInfo = {};
-//             for(let i = 0; i< company.departments.length; i++){
-//                 count += company.departments[i].employees_count;
-//                 shortInfo[company.name] = count;
-//                 shortInfo[company.departments[i].name] = company.departments[i].employees_count;
+function countEmployees(array){
+    let entreprise = [];
+    for (let company of array){
+        let count = 0;
+        let shortInfo = {};
+            for(let i = 0; i< company.departments.length; i++){
+                count += company.departments[i].employees_count;
+                shortInfo[company.name] = count;
+                shortInfo[company.departments[i].name] = company.departments[i].employees_count;
 
-//         }
-//         entreprise.push(shortInfo); 
-//     }return entreprise;
-// }
-
-// console.log(countEmployees(enterprises));
+        }
+        entreprise.push(shortInfo); 
+    }return entreprise;
+}
 
 // 2. Написать функцию, которая будет принимать 1 аргумент 
 //(id отдела или название отдела и возвращать название предприятия, к которому относится).
 // Пример:
 // getEnterpriseName(4) // Предприятие 1
 // getEnterpriseName("Отдел маркетинга") // Предприятие 2
-// function showCompany(idOrName){
-//   for (let company of enterprises){
-//     if (company.departments.find((department) => (department.id === idOrName || department.name === idOrName))){
-//       return company.name
-// }
-// }}
-// console.log(showCompany("Отдел аналитики"))
+function showCompany(idOrName){
+  for (let company of enterprises){
+    if (company.departments.find((department) => (department.id === idOrName || department.name === idOrName))){
+      return company.name
+}
+}}
 
-// 3. Написать функцию, которая будет добавлять предприятие. В качестве аргумента принимает название предприятия
-// function addEnterprise(companyName) {
-//   let greatestId = Math.max(...enterprises.map(company => (company.id + company.departments.length)));
-//   let companyId = greatestId + 1;
-//   enterprises.push(
-//     {
-//       id: companyId,
-//       name: companyName,
-//       departments: [],
-//     }
-//   );
-//   return enterprises 
-// }
-// Пример:addEnterprise("Название нового предприятия")
+// 3. Написать функцию, которая будет добавлять предприятие. В качестве аргумента принимает название предприятия. Пример:addEnterprise("Название нового предприятия")
+function addEnterprise(companyName) {
+  let greatestId = Math.max(...enterprises.map(company => (company.id + company.departments.length)));
+  let companyId = greatestId + 1;
+  enterprises.push(
+    {
+      id: companyId,
+      name: companyName,
+      departments: [],
+    }
+  );
+  return enterprises 
+}
 
 // 4. Написать функцию, которая будет добавлять отдел в предприятие. В качестве аргумента принимает id предприятия, в которое будет добавлен отдел и название отдела.
-// function addDepartment(companyId, deptName) {
-//   for (let company of enterprises) {
-//     let greatestId = Math.max(...enterprises.map(company => (company.id + company.departments.length)));
-//     let deptId = greatestId + 1;
-//     if (company.id === companyId) {
-//       company.departments.push(
-//         {
-//           id: deptId,
-//           name: deptName,
-//         },
-//       )
-//     }
-//   }
-//   return enterprises 
-// }
 // Пример: addDepartment(1, "Название нового отдела")
+function addDepartment(companyId, deptName) {
+  for (let company of enterprises) {
+    let greatestId = Math.max(...enterprises.map(company => (company.id + company.departments.length)));
+    let deptId = greatestId + 1;
+    if (company.id === companyId) {
+      company.departments.push(
+        {
+          id: deptId,
+          name: deptName,
+        },
+      )
+    }
+  }
+  return enterprises 
+}
+
 
 // 5. Написать функцию для редактирования названия предприятия. Принимает в качестве аргумента id предприятия и новое имя предприятия.
-
 // Пример:
 // editEnterprise(1, "Новое название предприятия")
-//function editEnterprise(companyId, companyEditedName){
-  //1 
-  // for (let company of enterprises){
-  //   if (company.id == companyId){
-  //      company.name = companyEditedName
-  //     }
-  // }return enterprises;
+function editEnterprise(companyId, companyEditedName){
+ // 1 
+  for (let company of enterprises){
+    if (company.id == companyId){
+       company.name = companyEditedName
+      }
+  }return enterprises;
 
-  //2
+ // 2
 //  return enterprises.forEach(company => {
 //   if (company.id === companyId){
 //     company.name = companyEditedName
 //   }
 // })
-//}
+}
 
 // 6. Написать функцию для редактирования названия отдела. Принимает в качестве аргумента id отдела и новое имя отдела.
-
 // Пример:
 // editDepartment(7, "Новое название отдела")
-// function editDepartment(deptId, deptNewName){
-//   for (let entreprice of enterprises){
-//     entreprice.departments.forEach(department => {
-//     if (department.id == deptId){
-//       department.name = deptNewName
-//     }
+function editDepartment(deptId, deptNewName){
+  for (let entreprice of enterprises){
+    entreprice.departments.forEach(department => {
+    if (department.id == deptId){
+      department.name = deptNewName
+    }
 
-//   })
-// }return enterprises;
-// }
-
-// editDepartment(7, "Новое название отдела");
-// console.log(enterprises[1].departments)
+  })
+}return enterprises;
+}
 
 // 7. Написать функцию для удаления предприятия. В качестве аргумента принимает id предприятия.
-// function deleteEnterprise(entrepriceId){
-//   let indexOfCompany = enterprises.find(company => company.id === entrepriceId);
-//   enterprises.splice(indexOfCompany, 1);
-//   return enterprises;
-//}
-// Пример:
-// console.log(deleteEnterprise(1))
-
+function deleteEnterprise(entrepriceId){
+  let indexOfCompany = enterprises.find(company => company.id === entrepriceId);
+  enterprises.splice(indexOfCompany, 1);
+  return enterprises;
+}
 
 // 8. Написать функцию для удаления отдела. В качестве аргумента принимает id отдела. Удалить отдел можно только, если в нем нет сотрудников.
+// // Пример:(deleteDepartment(10))
 function deleteDepartment(departmentId){
   for(let company of enterprises){
     let indexOfDepartment = company.departments.findIndex(department => department.id == departmentId);
@@ -182,11 +172,8 @@ function deleteDepartment(departmentId){
 return enterprises;
 }
 
-// // Пример:(deleteDepartment(10))
-
-
-// 9. Написать функцию для переноса сотрудников между отделами одного предприятия. В качестве аргумента принимает два значения: id отдела, из которого будут переноситься сотрудники и id отдела, в который будут переноситься сотрудники).
-
+// 9. Написать функцию для переноса сотрудников между отделами одного предприятия. В качестве аргумента принимает два значения: 
+//id отдела, из которого будут переноситься сотрудники и id отдела, в который будут переноситься сотрудники).
 // Пример:
 // moveEmployees(2, 3)
 function moveEmployees(fromDeptId, toDeptId){
@@ -200,4 +187,3 @@ function moveEmployees(fromDeptId, toDeptId){
   }
   return enterprises
 }
-moveEmployees(2, 3)
