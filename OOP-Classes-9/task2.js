@@ -9,11 +9,11 @@ class Animal{
     getInfo(){
         console.log(`The Animal is ${this.type}, ${this.color} color, ${this.height} high and weights ${this.weight} kg. The Animal is from ${this.placeOfOrigin} `)
     }
-    getColor(){
+    get color(){
         return this._color;
     }
-    setColor(shade){
-        if (shade.toLowerCase() === "red" || shade.toLowerCase() === "black" || shade.toLowerCase() === "white" || shade.toLowerCase() === "blue"){
+    set color(shade){
+        if (shade.toLowerCase() == "red" || shade.toLowerCase() == "black" || shade.toLowerCase() == "white" || shade.toLowerCase() == "blue"){
             this._color = shade.toLowerCase();
         } else {
             throw new Error(`wrong color`);
@@ -74,6 +74,8 @@ class Worker{
     //   workers: []
     //   animals: [],
 class Zoo{
+    #animalIdCounter = 1;
+
     constructor(address, title, ticketPrice){
         this.address = address;
         this.title = title;
@@ -91,11 +93,11 @@ class Zoo{
     get ticketPrice(){
         return this._ticketPrice;
     }
-    set address(location){
-        if(typeof location === 'string'){
-            return this._address = location;
+    set address(gpsCoordinates){
+        if(typeof gpsCoordinates === 'string' || gpsCoordinates.length ===25){
+            return this._address = gpsCoordinates;
         }else{
-        throw new Error(`invalid location : ${location}`)
+        throw new Error(`location must be given in GPS Coordinates. This is invalid input: ${gpsCoordinates}`)
         }
     }
     set title(name){
@@ -127,41 +129,36 @@ class Zoo{
 //     На вход метод должен принимать объект класса Animal, как и любого из его наследников. 
 //     Если объект не является инстансом класса Animal - выкинуть ошибку
 //     ТАКЖЕ, если объект является инстансом класса Snake - выкинуть ошибку с тексом "There will be no snakes, mister Potter!"
+animalID(){
+    return this.#animalIdCounter;
+}
 
-addAnimal(animal, id){
-    animal.id = id;
+addAnimal(animal){
     if (!(animal instanceof Animal)){
     throw new Error(`can not add animal: ${animal}`)
     } else if ((animal instanceof Snake)){
     throw new Error(`There will be no snakes, mister Potter!`)
-    }else if (!id){
-        throw new Error(`can not add animal without id`)
     }else {
-    this.animals.push(animal)
+    animal.id = this.#animalIdCounter;
+    this.animals.push(animal);
+    this.#animalIdCounter++;
 }
 } 
+// 8. Добавьте методы removeWorker() и removeAnimal() // Подумайте, как будем удалять, по какому полю будем выбирать:)
 removeWorker(phone){
- if(this.workers.phone === phone){
-    const indexW = this._workers.findIndex(worker => worker.phone === phone)
+    const indexW = this.workers.findIndex(worker => worker.phone === phone);
+    if(indexW !== -1){
     this.workers.splice(indexW, 1)
+ }else{
+    throw new Error(`Worker with phone number ${phone} not found`)
  }
 }  
 removeAnimal(id){
-       const indexA = this.animals.findIndex(animal => animal.id === id)
-       this.workers.splice(indexA, 1)
-    if (!indexA){
-        throw new Error("Animal with id ${id} not found")
+       const indexA = this.animals.findIndex(animal => animal.id === id);  
+    if (indexA !== -1){
+        this.animals.splice(indexA, 1);
+    }else{
+        throw new Error(`Animal with id ${id} not found`)
     }
    }
-
-// 8. Добавьте методы removeWorker() и removeAnimal() // Подумайте, как будем удалять, по какому полю будем выбирать:)
 }
-const mvZoo = new Zoo('MV, PA', 'Mine home', 25);
-console.log(mvZoo.animals);
-const dog = new Animal('dog', 'green', 40, 10, 'UkR')
-mvZoo.addAnimal(dog, 15)
-console.log(mvZoo.animals);
-const cheetah = new CatLike('cat', 'pink', 5, 6, "afr", false);
-mvZoo.addAnimal(cheetah, 25)
-console.log(mvZoo.animals);
-console.log(mvZoo.removeAnimal(15));
