@@ -33,11 +33,11 @@ class Animal{
         console.log(`The Animal is ${this.type}, ${this.color} color, ${this.height} high and weights ${this.weight} kg. The Animal is from ${this.placeOfOrigin} `)
     }
     getColor(){
-        return this._color;
+        return this.color;
     }
     setColor(shade){
         if (shade.toLowerCase() === "red" || shade.toLowerCase() === "black" || shade.toLowerCase() === "white" || shade.toLowerCase() === "blue"){
-            this._color = shade.toLowerCase();
+            this.color = shade.toLowerCase();
         } throw new Error(`wrong color`);
     }
 }
