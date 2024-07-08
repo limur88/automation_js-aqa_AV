@@ -87,7 +87,7 @@ function getEmployeeInfo(
     return `Employee ${employee.name} ${employee.surname}, income ${employee.salary}`
 }
 
-function isInIt(employee: object): employee is ItEmployee {
+function isItEmployee(employee: object): employee is ItEmployee {
     return "occupation" in employee;
 }
 
