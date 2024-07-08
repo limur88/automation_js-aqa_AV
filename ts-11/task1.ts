@@ -78,12 +78,7 @@ let anna: IEmployee = {
 
 }
 function getEmployeeInfo(
-    employee: {
-        name: string,
-        surname: string,
-        readonly salary: number,
-        address?: string,
-    }) {
+    employee: IEmployee) {
     return `Employee ${employee.name} ${employee.surname}, income ${employee.salary}`
 }
 
@@ -92,7 +87,7 @@ function isItEmployee(employee: object): employee is ItEmployee {
 }
 
 function isInItGetDetails(workerOrIt: IEmployee | ItEmployee) {
-    if (isInIt(workerOrIt)) {
+    if (isItEmployee(workerOrIt)) {
         return (`Employee ${workerOrIt.name} ${workerOrIt.surname}, income ${workerOrIt.salary}, projects ${workerOrIt.projectNames}. Works in IT`);
     } else {
         return(`Employee ${workerOrIt.name} ${workerOrIt.surname}, income ${workerOrIt.salary}. Not in IT`)
