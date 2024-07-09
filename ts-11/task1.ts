@@ -81,8 +81,7 @@ function getEmployeeInfo(
     employee: IEmployee) {
     return `Employee ${employee.name} ${employee.surname}, income ${employee.salary}`
 }
-
-function isItEmployee(employee: object): employee is ItEmployee {
+function isItEmployee(employee: IEmployee | ItEmployee): employee is ItEmployee {
     return "occupation" in employee;
 }
 
