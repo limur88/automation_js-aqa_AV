@@ -15,30 +15,32 @@
 class StorageClass<T extends { id: number }> {
     private records: T[] = [];
 
-    constructor() { };
+    constructor() {};
 
+    private createId(): number{
+        let newId = this.records.length ===0? 1: (Math.max(...this.records.map((record) => record.id))+1);
+        return newId;
+    
+    }
+    
     add(data: T): void;
     add(data: Omit<T, 'id'>): void;
 
     add(data: T | Omit<T, "id">): void {
-        if ("id" in data) {
-            this.records.push(data as T);
+        if(!("id" in data)) {
+            const id = this.createId();
+            const newData = {...data, id};
+            this.records.push(newData as T)
         } else {
-            if (this.records.length == 0) {
-                let newId = 1;
-                this.records.push({ ...data, id: newId } as T);
-            } else {
-                let ids = this.records.map((record) => record.id);
-                let newId = Math.max(...ids) + 1;
-                this.records.push({ ...data, id: newId } as T);
+            this.records.push(data as T);
             }
         }
-    }
+    
 
-    update(data: T): void {
+    update(data: Partial<T> & Pick<T, "id">): void {
         let index = this.records.findIndex(record => record.id === data.id);
         if (index !==-1){
-            this.records[index] = data;
+            this.records[index] = {...this.records[index],...data as T};
     }
 }
     remove(id: number): void {
@@ -53,5 +55,17 @@ class StorageClass<T extends { id: number }> {
         return this.records;
     }
 }
+const storage = new StorageClass;
+storage.add({ id: 1, name: 'Anatoly', age: 33 }); // valid
+storage.add({ name: 'Elena', age: 25 }); // valid, created with id === 2
 
+storage.update({ id: 1, name: 'Egor' });
+storage.update({ id: 2, name: 'Tatiana', age: 33 });
+
+console.log(storage.getById(1)); // { id: 1, name: 'Egor', age: 33 }
+console.log(storage.getAll()); // [{ id: 1, name: 'Egor', age: 33 }, { id: 2, name: 'Tatiana', age: 33 }]
+
+storage.remove(2);
+
+console.log(storage.getAll()); // [{ id: 1, name: 'Egor', age: 33 }]
 
