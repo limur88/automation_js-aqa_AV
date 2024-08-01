@@ -62,14 +62,28 @@ describe('Registration', () => {
     
   });
 });
+// Username: обязательное, от 3 до 40 символов включительно, запрещены префиксные/постфиксные пробелы, как и имя состоящее из одних пробелов
+// Password: обязательное, от 8 до 20 символов включительно, необходима хотя бы одна буква в верхнем и нижнем регистрах, пароль из одних пробелов запрещен
 
 context ('Negative scenario', () =>{
   const invalidCredentials = {
-      userName: ['AV', ''],
-      password: ['strongPass', ""]
+      userName: ['AV', '', 'student'],
+      password: ['strongPass', '', 'strongpass']
   };
 
-it('Should NOT register with INvalid credentials', async () => {
+it('Should NOT register with too short username', async () => {
+  const username = await $(usernameFieldRegistration);
+  const password = await $(passwordFieldRegistration);
+  const submitRegisterButton = await $(submitRegisterButtonXpath);
+
+  await username.setValue(invalidCredentials.userName[0]);
+  await password.setValue(invalidCredentials.password[0]);
+  await submitRegisterButton.click();
+  
+  expect(messageXpath).toHaveText(failText);  
+});
+
+it('Not registered witout data, verify fields are required to fill', async () => {
   const username = await $(usernameFieldRegistration);
   const password = await $(passwordFieldRegistration);
   const submitRegisterButton = await $(submitRegisterButtonXpath);
@@ -79,9 +93,15 @@ it('Should NOT register with INvalid credentials', async () => {
   await submitRegisterButton.click();
   
   expect(messageXpath).toHaveText(failText);  
+});
 
-  await username.setValue(invalidCredentials.userName[0]);
-  await password.setValue(invalidCredentials.password[0]);
+it('shoould nor register with password in lowerCase only', async () => {
+  const username = await $(usernameFieldRegistration);
+  const password = await $(passwordFieldRegistration);
+  const submitRegisterButton = await $(submitRegisterButtonXpath);
+
+  await username.setValue(invalidCredentials.userName[2]);
+  await password.setValue(invalidCredentials.password[2]);
   await submitRegisterButton.click();
   
   expect(messageXpath).toHaveText(failText);  
