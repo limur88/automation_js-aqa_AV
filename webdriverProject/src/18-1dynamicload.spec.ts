@@ -26,18 +26,19 @@ describe("Dynamic loading", () =>{
        await browser.waitUntil(
         async() =>{
             const element = await $(selector);
-            return (await element.isDisplayed()) && (await expect(element).toHaveText(text));
+            const displayed = await element.isDisplayed();
+            const textPresence = await element.getText();
+            return (displayed && textPresence === text);
         },
         {
             timeout: time,
-            interval: time/5,
             timeoutMsg: `The element with text ${text} was not displayed and did not have expected text after ${time} ms waiting`
         }
        );
     }
     before (async () => {
         await browser.maximizeWindow();
-        await browser.pause(5000);
+        await browser.pause(2000);
     });
     
     beforeEach( async () => {
@@ -52,15 +53,15 @@ describe("Dynamic loading", () =>{
         const header1 = await $('h4');
         await expect(header1).toHaveText("Example 1: Element on page that is hidden");
         await $('button').click();
-        waitForElementWithText('h4', 'Hello World!', 10000)
+        await waitForElementWithText('#finish', 'Hello World!', 10000);
     });
   
-    it('click on example 2', async () => {
+    it('has to fail: click on example 2, intentionally wrong tet check', async () => {
         const link2 = link2Xpath;
         await $(link2).click();
         const header2 = await $('h4');
         await expect(header2).toHaveText("Example 2: Element rendered after the fact");
         await $('button').click();
-        console.log(waitForElementWithText('h4', 'fail', 100))
+        await waitForElementWithText('#finish', 'Hello Woooorld!', 1000);
     });
   });
