@@ -22,6 +22,37 @@ describe("Dynamic loading", () =>{
     const link1Xpath = '//a[contains(text(), "Example 1")]';
     const link2Xpath = '//a[contains(text(), "Example 2")]';
 
+
+    before (async () => {
+        await browser.maximizeWindow();
+        await browser.pause(2000);
+    });
+    
+    beforeEach( async () => {
+    await browser.url(task1Url);
+    await $(dynamicLoadingLink).click();
+    await $(linksXpath).waitForDisplayed();
+    });
+  
+    it('Should display text "Hello world!" after loading', async () => {
+        const link1 = link1Xpath;
+        await $(link1).click();
+        const header1 = await $('h4');
+        await expect(header1).toHaveText("Example 1: Element on page that is hidden");
+        await $('button').click();
+        await waitForElementWithText('#finish', 'Hello World!', 10000);
+    });
+  
+    it('Should fail: click on example 2, intentionally wrong tet check', async () => {
+        const link2 = link2Xpath;
+        await $(link2).click();
+        const header2 = await $('h4');
+        await expect(header2).toHaveText("Example 2: Element rendered after the fact");
+        await $('button').click();
+        await waitForElementWithText('#finish', 'Hello Woooorld!', 1000);
+    });
+  });
+
     async function waitForElementWithText(selector: string, text:string, time:number){
        await browser.waitUntil(
         async() =>{
@@ -36,32 +67,3 @@ describe("Dynamic loading", () =>{
         }
        );
     }
-    before (async () => {
-        await browser.maximizeWindow();
-        await browser.pause(2000);
-    });
-    
-    beforeEach( async () => {
-    await browser.url(task1Url);
-    await $(dynamicLoadingLink).click();
-    await $(linksXpath).waitForDisplayed();
-    });
-  
-    it('click on example 1', async () => {
-        const link1 = link1Xpath;
-        await $(link1).click();
-        const header1 = await $('h4');
-        await expect(header1).toHaveText("Example 1: Element on page that is hidden");
-        await $('button').click();
-        await waitForElementWithText('#finish', 'Hello World!', 10000);
-    });
-  
-    it('has to fail: click on example 2, intentionally wrong tet check', async () => {
-        const link2 = link2Xpath;
-        await $(link2).click();
-        const header2 = await $('h4');
-        await expect(header2).toHaveText("Example 2: Element rendered after the fact");
-        await $('button').click();
-        await waitForElementWithText('#finish', 'Hello Woooorld!', 1000);
-    });
-  });
