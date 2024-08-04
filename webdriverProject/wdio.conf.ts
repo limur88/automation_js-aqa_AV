@@ -30,9 +30,9 @@ export const config: Options.Testrunner = {
     // of the config file unless it's absolute.
     //
     specs: [
-     //  'src/**/*.spec.ts',
+     'src/**/*.spec.ts',
     //    "src/register.spec.ts",
-    'src/18-1dynamicload.spec.ts'
+   // 'src/18-1dynamicload.spec.ts'
     ],
     // Patterns to exclude.
     exclude: [
