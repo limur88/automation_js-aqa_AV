@@ -37,8 +37,7 @@ console.log(result); //{ '1': 1, '2': 2, '3': 3, '4': 5 }
 
 function generateObject<T>(array:[string, T][]): {[key: string]: T}{
     let obj: {[key: string]: T} = {};
-    for(let pair of array){
-        const [key, value] = pair;
+    for(const [key, value] of array){
         obj[key] = value;
         
     }
