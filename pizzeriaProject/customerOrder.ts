@@ -26,7 +26,7 @@ export class CustomerOrder{
     }
    
     removeItem(name: string): void {
-        let index = this.orderItems.findIndex((item) => item.name = name);
+        let index = this.orderItems.findIndex((item) => item.name === name);
         if(index !== -1){
         this.orderItems.splice(index, 1);
     }}
